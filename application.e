@@ -24,7 +24,11 @@ feature {NONE} -- Initialization
 			game_library.enable_video
 			image_file_library.enable_png
 			create l_engine.make
-			l_engine.run
+			if l_engine.has_error then
+				io.error.put_string ("Cannot load game. Upgrade your toaster.")
+			else
+				l_engine.run
+			end
 			l_engine := Void
 			image_file_library.quit_library
 			check attached {MY_LIBRARY_CONTROLLER} game_library as la_game_library then
